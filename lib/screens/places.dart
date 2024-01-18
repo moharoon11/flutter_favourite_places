@@ -4,6 +4,7 @@ import 'package:places/model/place.dart';
 import 'package:places/provider/places_provider.dart';
 import 'package:places/screens/add_place.dart';
 import 'package:places/screens/places_details.dart';
+import 'package:places/widgets/places_list.dart';
 
 class PlacesScreen extends ConsumerWidget {
   const PlacesScreen({super.key});
@@ -19,27 +20,7 @@ class PlacesScreen extends ConsumerWidget {
     );
 
     if (places.isNotEmpty) {
-      content = ListView.builder(
-          itemCount: places.length,
-          itemBuilder: (context, index) {
-            return Dismissible(
-              key: ValueKey(places[index].id),
-              onDismissed: (direction) {},
-              child: ListTile(
-                title: Text(
-                  places[index].title,
-                ),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          PlaceDetailScreen(place: places[index]),
-                    ),
-                  );
-                },
-              ),
-            );
-          });
+      content = PlacesList(places: places);
     }
 
     return Scaffold(

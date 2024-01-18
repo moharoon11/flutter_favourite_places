@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,7 +12,6 @@ final colorScheme = ColorScheme.fromSeed(
 );
 
 final theme = ThemeData().copyWith(
-  useMaterial3: true,
   scaffoldBackgroundColor: colorScheme.background,
   colorScheme: colorScheme,
   textTheme: GoogleFonts.ubuntuCondensedTextTheme().copyWith(
@@ -30,6 +30,14 @@ final theme = ThemeData().copyWith(
 void main() {
   runApp(
     const ProviderScope(child: MyApp()),
+  );
+
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+        statusBarColor: Color.fromARGB(201, 0, 0, 0),
+        systemStatusBarContrastEnforced: true,
+        systemNavigationBarColor: Color.fromARGB(201, 0, 0, 0),
+        systemNavigationBarDividerColor: Colors.black),
   );
 }
 
